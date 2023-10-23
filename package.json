@@ -1,0 +1,23 @@
+{
+  "name": "react-native-prompt-async",
+  "version": "1.0.0",
+  "description": "Package async similar to the JavaScript 'prompt' method, it's called in a single line with await",
+  "main": "prompt.js",
+  "keywords": [
+    "prompt",
+    "react-native-prompt",
+    "rn-prompt",
+    "rn-prompt-one-line",
+    "react-native-prompt-async",
+    "prompt-async",
+    "react-native-prompt-one-line",
+    "prompt",
+    "js"
+  ],
+  "peerDependencies": {
+    "react": ">=16.0.0",
+    "react-native": ">=0.60.0"
+  },
+  "author": "Moises Avila Parra",
+  "license": "ISC"
+}
