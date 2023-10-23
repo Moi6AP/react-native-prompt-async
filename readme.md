@@ -29,12 +29,12 @@ import { initializePrompt } from "react-native-prompt-async";
 
 export default function App (){
 
-	return (
-		<View>
-			<InitializePrompt/>
-			// your code
-		</View>
-	);
+ return (
+	<View>
+		<InitializePrompt/>
+		// your code
+	</View>
+ );
 }
 ```
 
@@ -49,27 +49,30 @@ import prompt from 'react-native-prompt-async';
 
 function App() {
 
-	async function action (){
-		const response = await prompt("¿question?");
-		// your code
-	}
+async function action (){
+	const response = await prompt("¿question?");
+	// your code
+}
 
-	return (
-		<View>
-			<Pressable onPress={action} >
-				<Text>Button</Text>
-			</Pressable>
-		</View>
-	);
+ return (
+	<View>
+		<Pressable onPress={action} >
+			<Text>Button</Text>
+		</Pressable>
+	</View>
+ );
 }
 ```
 passing properties to the object as parameters
 ```jsx
 ...
-	async function action (){
-		const response = await prompt({title:"¿Why are you a programmer??", description:"hello:)"});
-		// your code
-	}
+async function action (){
+	const response = await prompt({
+		title:"¿Why are you a programmer??", 
+		description:"hello:)"
+	});
+	// your code
+}
 ...
 ```
 # Response
@@ -91,21 +94,13 @@ placeholder | string | "Enter the required.." |
 placeholderTextColor | string | auto | 
 textInputDefaultValue | string | ""
 autofocus | bool | true
-|
 cancelButton | string | "left" | Property that assigns as **"close or cancel button"** to any of the two buttons. if **cancelButton** is **"left"** then the left `Button` is going to be the close or cancel `Button`.
 leftButtonText | string | "Cancel"
 rightButtonText | string | "Done"
 leftButtonTextColor | string | "#D22929"
 rightButtonTextColor | string | "#76C856"
-|
 isOverlayClose | bool | false
 keyboardSpace | number | 0
-
-
-
-
-
-
 
 
 
