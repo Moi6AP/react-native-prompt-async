@@ -22,6 +22,7 @@ export function InitializePrompt (){
 
     const esTextoLargo = (prompt?.leftButtonText?.length > 10 || prompt?.rightButtonText?.length > 10);
     const dark = prompt?.darkMode === true;
+    const cancel = prompt?.cancelButton;
 
     if (prompt?.textInputDefaultValue) {
         textInputValue.current = prompt?.textInputDefaultValue;
@@ -30,6 +31,12 @@ export function InitializePrompt (){
     function close (){
         setModal(false);
         textInputValue.current = "";
+    }
+
+    function done (){
+        if (textInputValue.current.trim() != "") {
+            setModal(textInputValue.current.trim());
+        }
     }
 
     useEffect(()=>{
@@ -50,10 +57,10 @@ export function InitializePrompt (){
                     <TextInput placeholderTextColor={prompt?.placeholderTextColor || (dark ? "#717171" : "")} autoFocus={prompt?.autofocus !== undefined ? prompt?.autofocus : true}  onChangeText={txt=>textInputValue.current = txt} defaultValue={prompt?.textInputDefaultValue || ""} style={{marginTop:14, borderColor:dark ? "#484848" : "#EDEDED", color:dark ? "#B5B5B5" : "#545454", borderRadius:3, width:"95%", borderWidth:0.5, backgroundColor: dark ? "#535353" : "#fff", padding:8, fontSize:15}} placeholder={prompt?.placeholder || "Enter the required.."} />
 
                     <View style={{marginTop:13, width:"95%", alignItems:"center", justifyContent: !esTextoLargo ? "space-around" : "flex-start", flexDirection: esTextoLargo ? "column" : "row"}}>
-                        <Pressable onPress={close} style={({pressed})=>[{opacity:pressed ? "0.6" : 1, marginBottom: esTextoLargo ? 5 : 0, borderColor: dark ? "#4A4A4A" : "#DEDEDE", minHeight:40, justifyContent:"center", borderWidth:0.5, width: esTextoLargo ? "100%" : "45%"}]}>
+                        <Pressable onPress={!cancel? close : cancel != "left" ? done : close} style={({pressed})=>[{opacity:pressed ? "0.6" : 1, marginBottom: esTextoLargo ? 5 : 0, borderColor: dark ? "#4A4A4A" : "#DEDEDE", minHeight:40, justifyContent:"center", borderWidth:0.5, width: esTextoLargo ? "100%" : "45%"}]}>
                             <Text style={{textAlign:"center", color: prompt?.leftButtonTextColor || "#D22929"}}>{prompt?.leftButtonText || "Cancel"}</Text>
                         </Pressable>
-                        <Pressable onPress={()=>textInputValue.current.trim() == "" ? {} : setModal(textInputValue.current.trim())} style={({pressed})=>[{opacity:pressed ? "0.6" : 1, borderColor:dark ? "#4A4A4A" : "#DEDEDE", minHeight:40, justifyContent:"center", borderWidth:0.5, width: esTextoLargo ? "100%" : "45%"}]}>
+                        <Pressable onPress={!cancel ? done : cancel != "right" ? done : close} style={({pressed})=>[{opacity:pressed ? "0.6" : 1, borderColor:dark ? "#4A4A4A" : "#DEDEDE", minHeight:40, justifyContent:"center", borderWidth:0.5, width: esTextoLargo ? "100%" : "45%"}]}>
                             <Text style={{textAlign:"center", fontWeight:"bold", color: prompt?.rightButtonTextColor || "#76C856"}}>{prompt?.rightButtonText || "Done"}</Text>
                         </Pressable>
                     </View>
