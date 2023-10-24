@@ -36,6 +36,7 @@ export function InitializePrompt (){
     function done (){
         if (textInputValue.current.trim() != "") {
             setModal(textInputValue.current.trim());
+            textInputValue.current = "";
         }
     }
 
@@ -70,7 +71,7 @@ export function InitializePrompt (){
     )
 }
 
-export default function Prompt (params){
+export default function prompt (params){
     setModal(params);
 
     return new Promise ((res)=>{
