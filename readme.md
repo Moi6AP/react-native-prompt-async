@@ -92,7 +92,7 @@ Prop              | Type     | Default     | Description
 title | string | "" | Title of prompt (Main word).
 description | string | "" | Prompt description, text that goes between the title and the text field.
 placeholder | string | "Enter the required.." |  **placeholder** of `TextInput`.
-placeholderTextColor | string | auto | **placeholderTextColor** of `TextInput`.
+placeholderTextColor | string | "#DADADA" | **placeholderTextColor** of `TextInput`.
 textInputDefaultValue | string | "" | **defaultValue** of `TextInput`.
 autofocus | bool | true | Sets the **autofocus** property of the prompt's `TextInput`. if true as soon as the prompt window opens the keyboard will be activated automatically.
 cancelButton | string | "left" | Property that receives "left" or "right". Property that assigns as **"close or cancel button"** to any of the two buttons. if **cancelButton** is **"left"** then the left `Button` is going to be the close or cancel `Button`.
