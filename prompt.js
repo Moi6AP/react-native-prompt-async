@@ -41,6 +41,8 @@ export function InitializePrompt (){
         if (textInputValue.current.trim() != "") {
             setModal(textInputValue.current.trim());
             textInputValue.current = "";
+        } else if (prompt?.alert){
+            setModal(true);
         }
     }
 
@@ -74,13 +76,13 @@ export function InitializePrompt (){
                         <Text style={{fontSize:17, marginTop:3, maxWidth:"94%", color: dark ? "#fff" : "#000", fontWeight:"bold", textAlign:"center"}}>{prompt?.title}</Text>
                         {prompt?.description && <Text style={{fontSize:13.8, maxWidth:"93%", color:dark ? "#C8C8C8" : "#666666", marginTop:6, textAlign:"center"}}>{prompt?.description}</Text>}
                     </View>
-                    <TextInput ref={textInputRef} placeholderTextColor={prompt?.placeholderTextColor || (dark ? "#717171" : "#DADADA")} onChangeText={txt=>textInputValue.current = txt} defaultValue={prompt?.textInputDefaultValue || ""} style={{marginTop:14, borderColor:dark ? "#484848" : "#EDEDED", color:dark ? "#B5B5B5" : "#545454", borderRadius:3, width:"95%", borderWidth:0.5, backgroundColor: dark ? "#535353" : "#fff", padding:8, fontSize:15}} placeholder={prompt?.placeholder || "Enter the required.."} />
+                    <TextInput ref={textInputRef} placeholderTextColor={prompt?.placeholderTextColor || (dark ? "#717171" : "#DADADA")} onChangeText={txt=>textInputValue.current = txt} defaultValue={prompt?.textInputDefaultValue || ""} style={{display: prompt?.alert ? "none" : "flex", marginTop:14, borderColor:dark ? "#484848" : "#EDEDED", color:dark ? "#B5B5B5" : "#545454", borderRadius:3, width:"95%", borderWidth:0.5, backgroundColor: dark ? "#535353" : "#fff", padding:8, fontSize:15}} placeholder={prompt?.placeholder || "Enter the required.."} />
 
                     <View style={{marginTop:13, width:"95%", alignItems:"center", justifyContent: !esTextoLargo ? "space-around" : "flex-start", flexDirection: esTextoLargo ? "column" : "row"}}>
-                        <Pressable onPress={!cancel? close : cancel != "left" ? done : close} style={({pressed})=>[{opacity:pressed ? "0.6" : 1, marginBottom: esTextoLargo ? 5 : 0, borderColor: dark ? "#4A4A4A" : "#DEDEDE", minHeight:40, justifyContent:"center", borderWidth:0.5, width: esTextoLargo ? "100%" : "45%"}]}>
+                        <Pressable onPress={!cancel? close : cancel != "left" ? done : close} style={({pressed})=>[{display: (prompt?.buttonHidden == "left" || prompt?.buttonHidden == "all") ? "none" : "flex", opacity:pressed ? "0.6" : 1, marginBottom: esTextoLargo ? 5 : 0, borderColor: dark ? "#4A4A4A" : "#DEDEDE", minHeight:40, justifyContent:"center", borderWidth:0.5, width: esTextoLargo ? "100%" : "45%"}]}>
                             <Text style={{textAlign:"center", color: prompt?.leftButtonTextColor || "#D22929"}}>{prompt?.leftButtonText || "Cancel"}</Text>
                         </Pressable>
-                        <Pressable onPress={!cancel ? done : cancel != "right" ? done : close} style={({pressed})=>[{opacity:pressed ? "0.6" : 1, borderColor:dark ? "#4A4A4A" : "#DEDEDE", minHeight:40, justifyContent:"center", borderWidth:0.5, width: esTextoLargo ? "100%" : "45%"}]}>
+                        <Pressable onPress={!cancel ? done : cancel != "right" ? done : close} style={({pressed})=>[{display: (prompt?.buttonHidden == "right" || prompt?.buttonHidden == "all") ? "none" : "flex", opacity:pressed ? "0.6" : 1, borderColor:dark ? "#4A4A4A" : "#DEDEDE", minHeight:40, justifyContent:"center", borderWidth:0.5, width: esTextoLargo ? "100%" : "45%"}]}>
                             <Text style={{textAlign:"center", fontWeight:"bold", color: prompt?.rightButtonTextColor || "#76C856"}}>{prompt?.rightButtonText || "Done"}</Text>
                         </Pressable>
                     </View>
