@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Dimensions } from "react-native";
 import { TextInput, Modal, Pressable, Text, View, Platform } from "react-native";
 
 let subs = [];
@@ -59,16 +60,16 @@ export function InitializePrompt (){
                 } catch {
                     
                 }
-            }, isAndroid ? 100 : 1);
+            }, isAndroid ? 40 : 1);
         }
 
     }, [prompt]);
 
     return (
         <Modal visible={prompt !== false ? true : false} transparent>
-            <View style={{height:"100%", backgroundColor:"rgba(0, 0, 0, 0.4)", justifyContent:"center", alignItems:"center", width:"100%"}}>
+            <View style={{height:"100%", minHeight: isAndroid ? Dimensions.get("screen").height : "100%", backgroundColor:"rgba(0, 0, 0, 0.4)", justifyContent:"center", alignItems:"center", width:"100%"}}>
                 <Pressable onPress={prompt?.isOverlayClose ? close : ()=>{} } style={{position:"absolute", height:"100%", width:"100%"}} />
-                <View style={{width:290, marginBottom:prompt?.keyboardSpace || ((prompt?.description || esTextoLargo) ? 15 : 0), alignItems:"center", backgroundColor: dark ? "rgba(47, 45, 45, 0.85)" : "rgba(255, 255, 255, 0.85)", padding:10, borderRadius:11}}>
+                <View style={{width:290, marginBottom:prompt?.keyboardSpace || ((prompt?.description || esTextoLargo) ? 15 : 0), alignItems:"center", backgroundColor: dark ? "rgba(47, 45, 45, 0.92)" : "rgba(255, 255, 255, 0.92)", padding:10, borderRadius:11}}>
                     <View style={{alignItems:"center"}}>
                         <Text style={{fontSize:17, marginTop:3, maxWidth:"94%", color: dark ? "#fff" : "#000", fontWeight:"bold", textAlign:"center"}}>{prompt?.title}</Text>
                         {prompt?.description && <Text style={{fontSize:13.8, maxWidth:"93%", color:dark ? "#C8C8C8" : "#666666", marginTop:6, textAlign:"center"}}>{prompt?.description}</Text>}
