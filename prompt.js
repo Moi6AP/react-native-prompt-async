@@ -68,8 +68,8 @@ export function InitializePrompt (){
     }, [prompt]);
 
     return (
-        <Modal visible={prompt !== false ? true : false} transparent>
-            <View style={{height:"100%", minHeight: isAndroid ? Dimensions.get("screen").height : "100%", backgroundColor:"rgba(0, 0, 0, 0.4)", justifyContent:"center", alignItems:"center", width:"100%"}}>
+        <Modal style={{zIndex:5500}} visible={prompt !== false ? true : false} transparent>
+            <View style={{height:"100%", zIndex:5500, minHeight: isAndroid ? Dimensions.get("screen").height : "100%", backgroundColor:"rgba(0, 0, 0, 0.4)", justifyContent:"center", alignItems:"center", width:"100%"}}>
                 <Pressable onPress={prompt?.isOverlayClose ? close : ()=>{} } style={{position:"absolute", height:"100%", width:"100%"}} />
                 <View style={{width:290, marginBottom:prompt?.keyboardSpace || ((prompt?.description || esTextoLargo) ? 15 : 0), alignItems:"center", backgroundColor: dark ? "rgba(47, 45, 45, 0.92)" : "rgba(255, 255, 255, 0.92)", padding:10, borderRadius:11}}>
                     <View style={{alignItems:"center"}}>
