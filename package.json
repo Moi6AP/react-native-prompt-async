@@ -1,6 +1,6 @@
 {
   "name": "react-native-prompt-async",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Package async similar to the JavaScript 'prompt' method, it's called in a single line with await",
   "main": "prompt.js",
   "keywords": [
