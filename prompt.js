@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { TextInput, Modal, Pressable, Text, View } from "react-native";
+import { TextInput, Modal, Pressable, Text, View, Platform } from "react-native";
 
 let subs = [];
 let cantSubs = 0;
@@ -17,7 +17,10 @@ function modal (e){
 
 export function InitializePrompt (){
 
+    const isAndroid = Platform.OS == "android";
+
 	const [prompt, setPrompt] = useState(false);
+    const textInputRef = useRef(null);
     const textInputValue = useRef("");
 
     const esTextoLargo = (prompt?.leftButtonText?.length > 10 || prompt?.rightButtonText?.length > 10);
@@ -46,6 +49,21 @@ export function InitializePrompt (){
         });
     }, []);
 
+    useEffect(()=>{
+
+        // COMPATIBILIDAD ANDROID AUTOFOCUS, NO FUNCIONA CON PROP AUTOFOCUS
+        if (prompt !== false && typeof prompt !== "string" && prompt?.autofocus !== false) {
+            setTimeout(()=>{
+                try {
+                    textInputRef.current.focus();
+                } catch {
+                    
+                }
+            }, isAndroid ? 100 : 1);
+        }
+
+    }, [prompt]);
+
     return (
         <Modal visible={prompt !== false ? true : false} transparent>
             <View style={{height:"100%", backgroundColor:"rgba(0, 0, 0, 0.4)", justifyContent:"center", alignItems:"center", width:"100%"}}>
@@ -55,7 +73,7 @@ export function InitializePrompt (){
                         <Text style={{fontSize:17, marginTop:3, maxWidth:"94%", color: dark ? "#fff" : "#000", fontWeight:"bold", textAlign:"center"}}>{prompt?.title}</Text>
                         {prompt?.description && <Text style={{fontSize:13.8, maxWidth:"93%", color:dark ? "#C8C8C8" : "#666666", marginTop:6, textAlign:"center"}}>{prompt?.description}</Text>}
                     </View>
-                    <TextInput placeholderTextColor={prompt?.placeholderTextColor || (dark ? "#717171" : "#DADADA")} autoFocus={prompt?.autofocus !== undefined ? prompt?.autofocus : true}  onChangeText={txt=>textInputValue.current = txt} defaultValue={prompt?.textInputDefaultValue || ""} style={{marginTop:14, borderColor:dark ? "#484848" : "#EDEDED", color:dark ? "#B5B5B5" : "#545454", borderRadius:3, width:"95%", borderWidth:0.5, backgroundColor: dark ? "#535353" : "#fff", padding:8, fontSize:15}} placeholder={prompt?.placeholder || "Enter the required.."} />
+                    <TextInput ref={textInputRef} placeholderTextColor={prompt?.placeholderTextColor || (dark ? "#717171" : "#DADADA")} onChangeText={txt=>textInputValue.current = txt} defaultValue={prompt?.textInputDefaultValue || ""} style={{marginTop:14, borderColor:dark ? "#484848" : "#EDEDED", color:dark ? "#B5B5B5" : "#545454", borderRadius:3, width:"95%", borderWidth:0.5, backgroundColor: dark ? "#535353" : "#fff", padding:8, fontSize:15}} placeholder={prompt?.placeholder || "Enter the required.."} />
 
                     <View style={{marginTop:13, width:"95%", alignItems:"center", justifyContent: !esTextoLargo ? "space-around" : "flex-start", flexDirection: esTextoLargo ? "column" : "row"}}>
                         <Pressable onPress={!cancel? close : cancel != "left" ? done : close} style={({pressed})=>[{opacity:pressed ? "0.6" : 1, marginBottom: esTextoLargo ? 5 : 0, borderColor: dark ? "#4A4A4A" : "#DEDEDE", minHeight:40, justifyContent:"center", borderWidth:0.5, width: esTextoLargo ? "100%" : "45%"}]}>
