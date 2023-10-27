@@ -59,8 +59,8 @@ function App() {
       <Pressable onPress={action} >
         <Text>Button</Text>
       </Pressable>
-      </View>
-    );
+    </View>
+  );
 }
 ```
 
@@ -69,8 +69,8 @@ passing properties to the object as parameters
 ```javascript
 async function action (){
   const response = await prompt({
-    title:"¿Why are you a programmer??", 
-	  description:"hello:)"
+    title: "¿Why are you a programmer??", 
+	  description: "hello:)"
   });
   // your code
 }
