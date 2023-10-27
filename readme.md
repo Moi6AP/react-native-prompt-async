@@ -29,12 +29,12 @@ import { initializePrompt } from "react-native-prompt-async";
 
 export default function App (){
 
-	return (
-		<View>
-			<InitializePrompt/>
-			{/* your code */}
-		</View>
-	);
+  return (
+	<View>
+	  <InitializePrompt/>
+	  {/* your code */}
+	</View>
+  );
 }
 ```
 
@@ -49,30 +49,30 @@ import prompt from 'react-native-prompt-async';
 
 function App() {
 
-	async function action (){
-		const response = await prompt("¿question?");
-		// your code
-	}
+  async function action (){
+    const response = await prompt("¿question?");
+    // your code
+  }
 
-	return (
-		<View>
-			<Pressable onPress={action} >
-				<Text>Button</Text>
-			</Pressable>
-		</View>
-	);
+  return (
+	<View>
+	  <Pressable onPress={action} >
+	    <Text>Button</Text>
+	  </Pressable>
+  	</View>
+  );
 }
 ```
 
 passing properties to the object as parameters
 
-```js
+```javascript
 async function action (){
-	const response = await prompt({
-		title:"¿Why are you a programmer??", 
-		description:"hello:)"
-	});
-	// your code
+  const response = await prompt({
+    title:"¿Why are you a programmer??", 
+	description:"hello:)"
+  });
+  // your code
 }
 ```
 
@@ -102,6 +102,8 @@ leftButtonTextColor | string | "#D22929" | Text color displayed on the left `but
 rightButtonTextColor | string | "#76C856" | Text color displayed on the right `Button`.
 isOverlayClose | bool | false | Establishes whether the overlay (gray background) when pressed closes or cancels the prompt, if false it will not do so.
 keyboardSpace | number | 0 | Space between **keyboard** and prompt window, range 1-500.
+alert | bool | false | if true: sets the prompt to alert. **`button` not associated with cancelButton returns true**.
+buttonHidden | bool | none | hides either or both buttons. receives **"left", "right" or "all"** as a value. if **"all"** hides all buttons. if "left" or "right" hides the corresponding `button`.
 
 This is how it looks by **default**:
 ![Imagen 1](http://drive.google.com/uc?export=view&id=1Y0OvsTvgERlYC0XV5xRgSB5SWfV_g-T3)
@@ -116,4 +118,4 @@ This is how it looks like applying the **darkMode** property with the value **tr
 ![Imagen 4](http://drive.google.com/uc?export=view&id=1q3uXaJZ1iNYDnn_mHL-sO-56JxUZ-M2l)
 
 This is how it looks like applying the **cancelButton** property with the value **"right"**:
-[Video 1](https://drive.google.com/uc?export=view&id=10mCOM0U588UhBxMJjh416eK5r0yUZjle)
+[GIF 1](https://drive.google.com/uc?export=view&id=1NLEJPaBtkU90_BG7boM5Z7-r5q4u7KNx)
