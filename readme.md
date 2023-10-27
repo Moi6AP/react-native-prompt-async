@@ -30,10 +30,10 @@ import { initializePrompt } from "react-native-prompt-async";
 export default function App (){
 
   return (
-	<View>
-	  <InitializePrompt/>
-	  {/* your code */}
-	</View>
+    <View>
+      <InitializePrompt/>
+      {/* your code */}
+    </View>
   );
 }
 ```
@@ -55,12 +55,12 @@ function App() {
   }
 
   return (
-	<View>
-	  <Pressable onPress={action} >
-	    <Text>Button</Text>
-	  </Pressable>
-  	</View>
-  );
+    <View>
+      <Pressable onPress={action} >
+        <Text>Button</Text>
+      </Pressable>
+      </View>
+    );
 }
 ```
 
@@ -70,18 +70,20 @@ passing properties to the object as parameters
 async function action (){
   const response = await prompt({
     title:"¿Why are you a programmer??", 
-	description:"hello:)"
+	  description:"hello:)"
   });
   // your code
 }
 ```
 
 # Response
-prompt returns only 2 types of data, `false` or `string`.
+prompt returns only 2 types of data, `false`, `string` or `true`.
 
 `false` will be returned only if the user presses the button associated to the **cancelButton** property or also if he presses the overlay component (gray background) as long as the **isOverlayClose** property is true.
 
 `string` will only be returned if the user presses the button that is not associated to the **cancelButton** property as long as the text field is not empty.
+
+`true` will only be returned if the **alert** property is true and the user presses the button that is not associated to the **cancelButton** property.
 
 # Props
 
