@@ -83,10 +83,10 @@ export function InitializePrompt (){
                     }
 
                     <View style={{marginTop:13, width:"95%", alignItems:"center", justifyContent: !esTextoLargo ? "space-around" : "flex-start", flexDirection: esTextoLargo ? "column" : "row"}}>
-                        <Pressable onPress={!cancel? close : cancel != "left" ? done : close} style={({pressed})=>[{display: (prompt?.buttonHidden == "left" || prompt?.buttonHidden == "all") ? "none" : "flex", opacity:pressed ? "0.6" : 1, marginBottom: esTextoLargo ? 5 : 0, borderColor: dark ? "#4A4A4A" : "#DEDEDE", minHeight:40, justifyContent:"center", borderWidth:0.5, width: esTextoLargo ? "100%" : "45%"}]}>
+                        <Pressable onPress={!cancel? close : cancel != "left" ? done : close} style={({pressed})=>[{display: (prompt?.buttonHidden == "left" || prompt?.buttonHidden == "all") ? "none" : "flex", backgroundColor:pressed ? dark ? "rgba(68, 68, 68, 0.4)" : "rgba(236, 236, 236, 0.4)" : "transparent", borderRadius:3, marginBottom: esTextoLargo ? 5 : 0, borderColor: dark ? "#4A4A4A" : "#DEDEDE", minHeight:40, justifyContent:"center", borderWidth:0.5, width: esTextoLargo ? "100%" : "45%"}]}>
                             <Text style={{textAlign:"center", color: prompt?.leftButtonTextColor || "#D22929"}}>{prompt?.leftButtonText || "Cancel"}</Text>
                         </Pressable>
-                        <Pressable onPress={!cancel ? done : cancel != "right" ? done : close} style={({pressed})=>[{display: (prompt?.buttonHidden == "right" || prompt?.buttonHidden == "all") ? "none" : "flex", opacity:pressed ? "0.6" : 1, borderColor:dark ? "#4A4A4A" : "#DEDEDE", minHeight:40, justifyContent:"center", borderWidth:0.5, width: esTextoLargo ? "100%" : "45%"}]}>
+                        <Pressable onPress={!cancel ? done : cancel != "right" ? done : close} style={({pressed})=>[{display: (prompt?.buttonHidden == "right" || prompt?.buttonHidden == "all") ? "none" : "flex", backgroundColor:pressed ? dark ? "rgba(68, 68, 68, 0.4)" : "rgba(236, 236, 236, 0.4)" : "transparent", borderColor:dark ? "#4A4A4A" : "#DEDEDE", minHeight:40, justifyContent:"center", borderRadius:3, borderWidth:0.5, width: esTextoLargo ? "100%" : "45%"}]}>
                             <Text style={{textAlign:"center", fontWeight:"bold", color: prompt?.rightButtonTextColor || "#76C856"}}>{prompt?.rightButtonText || "Done"}</Text>
                         </Pressable>
                     </View>
