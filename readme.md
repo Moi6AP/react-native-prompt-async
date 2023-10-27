@@ -77,7 +77,7 @@ async function action (){
 ```
 
 # Response
-prompt returns only 2 types of data, `false`, `string` or `true`.
+prompt returns only 3 types of data, `false`, `true` or `string`.
 
 `false` will be returned only if the user presses the button associated to the **cancelButton** property or also if he presses the overlay component (gray background) as long as the **isOverlayClose** property is true.
 
